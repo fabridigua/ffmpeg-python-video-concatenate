@@ -6,9 +6,9 @@ Create video concatenating scenes coming from different video.
 
 Languages and libraries used
 ------
-..* __Python 3.6__ for scripting.
-..* __ffmpeg__ for video editing.
-..* __numpy__ 
++ __Python 3.6__ for scripting.
++ __ffmpeg__ for video editing.
++ __numpy__ 
 
 Files
 ------
