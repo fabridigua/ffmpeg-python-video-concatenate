@@ -7,7 +7,7 @@ import datetime
 import video_scripts as vs
 import ffmpeg_utility as ff
 import numpy as np
-path = 'D:\VISION\dataset' # Path of your videos
+path = 'D:\dataset' # Path of your videos
 log_date= datetime.datetime.now().strftime ("%Y%m%d%H%M%S")
 log = log_date+'_log' # Create a log
 if(not os.path.isfile(path+'\/folders.txt')):
@@ -20,6 +20,7 @@ clips_per_camera = 3 # max 3
 clips_total = video_cameras * clips_per_camera
 clip_duration = video_duration / (video_cameras*clips_per_camera)
 
+# Frame extraction
 frames_ext = 'jpg'
 second_frames_ext = 'no' # type 'no' for extract only in frames_ext extension or specify another one( es. 'bmp')
 
@@ -43,7 +44,6 @@ with open(log.replace('log','test')+'/'+log+".txt", "a") as txt:
     txt.write("Selected videos: %s\n\n" % (videos))
 
 os.system('mkdir '+log.replace('log','test')+'\\'+'cuts_tmp')
-os.system('mkdir '+log.replace('log','test')+'\\'+'cuts_tmp_cropped')
 
 videos_selected=[]
 k=-1
@@ -57,7 +57,6 @@ for i in range(video_cameras):
             # print("i k ",i,' ',k)
         os.system('mkdir -pv ' + log.replace('log', 'test') + '\\' + log_date + '_frames')
         ff.ffmpeg_cut_video_and_extract_frames(path+'/'+x, log.replace('log','test')+'/cuts_tmp/'+'cut_'+str(k)+'.mp4', clip_duration*(list(videos.values())[i].index(x)),clip_duration, str(k)+'_frame', log.replace('log', 'test') + '\\' + log_date + '_frames', frames_ext,second_frames_ext)
-        #ff.ffmpe_pad_to_resolution(str(1920),str(1080),log.replace('log','test')+'/cuts_tmp/'+'cut_'+str(i*2+list(videos.values())[i].index(x))+'.mp4',log.replace('log','test')+'/cuts_tmp_cropped/'+'cut_'+str(i*2+list(videos.values())[i].index(x))+'.mp4')
 videos_shuffled_indices=list(range(clips_total))
 random.shuffle(videos_shuffled_indices)
 print(videos_shuffled_indices)

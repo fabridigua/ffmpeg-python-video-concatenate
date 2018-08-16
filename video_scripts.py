@@ -4,7 +4,7 @@ import os
 import json
 import ffmpeg_utility as ff
 
-path = 'D:\VISION\dataset'
+path = 'D:\dataset'
 # Save directories in a file
 def name_folders(path=path):
     with open(path+"\/folders.txt", "w") as txt:
